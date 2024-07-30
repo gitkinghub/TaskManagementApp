@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpImage from "../assets/signup.svg";
+import SignUpImage from "../assets/register.avif";
 import Logo from "../assets/logo.png";
 import FormHandler from "../utils/FormHandler";
 import { validateSignUp as validate } from "../utils/Validation";

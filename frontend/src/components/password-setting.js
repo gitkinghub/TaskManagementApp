@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import formHandler from "../utils/FormHandler";
-import { validateTaskPasswordSettings } from "../utils/Validation";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { setUserDetail, toggleLoader } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import SettingImage from "../assets/settings.svg";
+import SettingImage from "../assets/settings.avif";
+import { toggleLoader } from "../redux/actions";
+import { validateTaskPasswordSettings } from "../utils/Validation";
 
 function PasswordSetting(props) {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ function PasswordSetting(props) {
     } else {
       setError(null);
       if (validateTaskPasswordSettings(inputs)) {
-        passwordChange(inputs);
+        passwordChange({ oldpassword, password });
         setInputs({});
       } else {
         setError("Validation failed");
@@ -39,7 +38,7 @@ function PasswordSetting(props) {
     }
   };
 
-  function passwordChange(inputs) {
+  function passwordChange(data) {
     dispatch(toggleLoader(true));
     const token = Cookies.get("tokenCookie");
     const config = {
@@ -48,7 +47,7 @@ function PasswordSetting(props) {
       }
     };
     axios
-      .put("http://127.0.0.1:8000/api/user/", inputs, config)
+      .patch("http://127.0.0.1:8000/api/user/", data, config)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
@@ -62,7 +61,7 @@ function PasswordSetting(props) {
           toast.error("Unauthorized");
           navigate("/login");
         } else {
-          toast.error("Incorrect");
+          toast.error("Error updating password");
         }
       })
       .finally(() => {
@@ -94,14 +93,14 @@ function PasswordSetting(props) {
             <div className="col-md-12">
               <div className="mb-3">
                 <h6>
-                  <label htmlFor="password" className="settings-form-text">
+                  <label htmlFor="oldpassword" className="settings-form-text">
                     Old Password
                   </label>
                 </h6>
                 <input
                   type="password"
                   name="oldpassword"
-                  id="password"
+                  id="oldpassword"
                   placeholder="Enter Old Password"
                   className={`form-control`}
                   value={inputs.oldpassword || ""}
@@ -113,14 +112,14 @@ function PasswordSetting(props) {
             <div className="col-md-12">
               <div className="mb-3">
                 <h6>
-                  <label htmlFor="newPassword" className="settings-form-text">
+                  <label htmlFor="password" className="settings-form-text">
                     New Password
                   </label>
                 </h6>
                 <input
                   type="password"
                   name="password"
-                  id="newPassword"
+                  id="password"
                   placeholder="Enter New Password"
                   className={`form-control`}
                   value={inputs.password || ""}

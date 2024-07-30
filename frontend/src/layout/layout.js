@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Bell from "../assets/bell-icon.svg";
-import Msg from "../assets/msg-icon.svg";
-// import Profile from "../src/assets/profile-img.svg";
 import Profile from "../assets/layoutDefaultProfile.png";
 import FeatherIcon from "feather-icons-react";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo.png";
-// import Logo from "../assets/eduzon.svg"
-import SideClose from "../assets/carbon_side-panel-close.svg";
+import SideClose from "../assets/close-panel.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { changeToggle, setUserDetail, toggleLoader } from "../redux/actions";

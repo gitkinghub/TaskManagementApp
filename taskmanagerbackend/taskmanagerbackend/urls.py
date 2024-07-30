@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from tasks.views import TaskViewSet, register_user, obtain_auth_token, UserProfileView
+from tasks.views import TaskViewSet, register_user, obtain_auth_token, UserProfileView, logout_user
 
 router = DefaultRouter()
 router.register(r'tasks', TaskViewSet, basename='task')
@@ -29,6 +29,5 @@ urlpatterns = [
     path('api/register/', register_user, name='register'),
     path('api/login/', obtain_auth_token, name='login'),
     path('api/user/', UserProfileView.as_view(), name='user-profile'),
+    path('api/logout/', logout_user, name='logout'),  
 ]
-
-

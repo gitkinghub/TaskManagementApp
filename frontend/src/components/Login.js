@@ -1,6 +1,6 @@
 // src/components/Login.js
 import React, { useState } from "react";
-import LoginImage from "../assets/login.svg";
+import LoginImage from "../assets/home-image.jpeg";
 import Logo from "../assets/logo.png";
 import { validateLogin } from "../utils/Validation";
 import FormHandler from "../utils/FormHandler";
