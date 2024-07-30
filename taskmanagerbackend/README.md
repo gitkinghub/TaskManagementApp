@@ -33,16 +33,25 @@ Before you begin, ensure you have met the following requirements:
 
 3. Install dependencies:
    pip install -r 'your packages here'
+   These are just some of them:
+
+   - pip install django
+   - pip install django-cors-headers
+   - pip install djangorestframework
+   - pip install dj-database-url
+   - pip install django-rest-knox
 
 4. Set up the database:
-   python manage.py makemigrations
-   python manage.py migrate
+
+   - python manage.py makemigrations
+   - python manage.py migrate
 
 5. Create a superuser (optional):
    python manage.py createsuperuser
 
 6. Run the development server:
-   python manage.py runserver
+
+   - python manage.py runserver
 
    The backend server will be running at http://127.0.0.1:8000/.
 
